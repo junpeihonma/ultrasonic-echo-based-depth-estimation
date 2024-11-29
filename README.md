@@ -2,7 +2,7 @@
 
 Junpei Honma, Akisato Kimura, Go Irie
 
-<p align="center"><img width="600" alt="top_image" src="https://github.com/user-attachments/files/17956961/task_overview.pdf"></p>
+<p align="center"><img width="600" alt="top_image" src="https://github.com/user-attachments/assets/555baa15-8845-4f37-a0ca-c78b9c324f94"></p>
 
 
 [Paper](https://arxiv.org/pdf/2409.03336)
