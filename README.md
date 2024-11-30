@@ -26,9 +26,6 @@ The code is tested with
 
 **TUS-Echo** can be obatined from [here](https://github.com/junpeihonma/TUS-Echo). 
 
-**Replica-VisualEchoes** can be obatined from [here](https://github.com/facebookresearch/VisualEchoes). We have used the 128x128 image resolution for our experiment. 
-
-
 ## Training
 
 To train the model, first download the pre-trained material net from above link. 
