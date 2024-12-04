@@ -17,10 +17,6 @@ class BaseOptions():
 		self.parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
 		self.parser.add_argument('--batchSize', type=int, default=8, help='input batch size')
 		self.parser.add_argument('--nThreads', default=8, type=int, help='# threads for loading data')
-		self.parser.add_argument('--audio_length', default=0.4, type=float, help='audio length, default 0.06s')
-		self.parser.add_argument('--audio_normalize', type=bool, default=False, help='whether to normalize the audio')
-		self.parser.add_argument('--image_transform', type=bool, default=True, help='whether to transform the image data')
-		self.parser.add_argument('--image_resolution', default=128, type=int, help='the resolution of image for cropping')
 		self.initialized = True
 
 	def parse(self):
@@ -28,9 +24,6 @@ class BaseOptions():
 			self.initialize()
 		self.opt = self.parser.parse_args()
 		self.opt.mode = self.mode
-		self.opt.isTrain = self.isTrain
-		self.opt.enable_img_augmentation = self.enable_data_augmentation
-		self.opt.enable_cropping = self.enable_cropping 
 		self.opt.scenes = {}
 
 		if self.opt.dataset == 'TUS-Echo':

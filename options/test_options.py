@@ -6,6 +6,3 @@ class TestOptions(BaseOptions):
 
 		#model arguments
 		self.mode = "test"
-		self.isTrain = False
-		self.enable_data_augmentation = False
-		self.enable_cropping = True

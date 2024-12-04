@@ -8,14 +8,7 @@ class TrainOptions(BaseOptions):
 		self.parser.add_argument('--learning_rate_decrease_itr', type=int, default=100, help='how often is the learning rate decreased by six percent')
 		self.parser.add_argument('--decay_factor', type=float, default=0.94, help='learning rate decay factor')
 		self.parser.add_argument('--validation_on', action='store_true', default="True",help='whether to test on validation set during training')
-		self.parser.add_argument('--validation_freq', type=int, default=113, help='frequency of testing on validation set') # 学習データ数 / バッチ数
 		self.parser.add_argument('--epoch_save_freq', type=int, default=100, help='frequency of saving intermediate models')
-
-		#model arguments
-		self.parser.add_argument('--init_material_weight', type=str, default= 'path_to_the_pretrained_model/material_pre_trained_minc.pth', help='path to the pre-trained material net')
-		self.parser.add_argument('--unet_ngf', type=int, default=64, help="unet base channel dimension")
-		self.parser.add_argument('--unet_input_nc', type=int, default=3, help="input spectrogram number of channels")
-		self.parser.add_argument('--unet_output_nc', type=int, default=1, help="output spectrogram number of channels")
 
 		#optimizer arguments
 		self.parser.add_argument('--lr_audio', type=float, default=0.0001, help='learning rate for audio')
@@ -24,6 +17,3 @@ class TrainOptions(BaseOptions):
 		self.parser.add_argument('--weight_decay', default=0.0005, type=float, help='weights regularizer')
 
 		self.mode = "train"
-		self.isTrain = True
-		self.enable_data_augmentation = True
-		self.enable_cropping = False
