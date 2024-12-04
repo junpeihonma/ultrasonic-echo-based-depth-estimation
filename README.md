@@ -27,40 +27,21 @@ The code is tested with
 **TUS-Echo** can be obatined from [here](https://github.com/junpeihonma/TUS-Echo). 
 
 
-## Pre-trained Model
-We have provided pre-trained model for both the datasets [here](https://drive.google.com/drive/folders/1k26oP5D1YTrWIBFblySIIqZzTT6kF4yd?usp=sharing). For each of the dataset four different parts of the model are saved individually with name `rgbdepth_*`, `audiodepth_*`, `material_*`, `attention_*`, where `*` represents the name of the dataset, i.e. `replica` or `mp3d`.
-
-
 ## Training
 
-To train the model, first download the pre-trained material net from above link. 
+To train the model, first download TUS-Echo dataset from above link. 
 ```
-python train.py \
+python train_multitask.py \
 --dataset TUS-Echo \
---img_path path_to_img_folder \
---metadatapath path_to_metadata \
---audio_path path_to_audio_folder \
---checkpoints_dir path_to_save_checkpoints \
---init_material_weight path_to_pre-trained_material_net
+--dataset_path path_to_dataset
 ```
 ## Evaluation 
 
-To evaluate the method using the pre-trained model, download the models for the corresponding dataset and the dataset.
-- Evalution for Replica dataset
+- Evalution for TUS-Echo dataset
 ```
-python test.py \
---img_path path_to_img_folder \
---audio_path path_to_audio_data \
---checkpoints_dir path_to_the_pretrained_model \
---dataset replica
-```
-- Evaluation for Matterport3D dataset
-```
-python test.py \
---img_path path_to_img_folder \
---audio_path path_to_audio_data \
---checkpoints_dir path_to_the_pretrained_model \
---dataset mp3d
+python test_multitask.py \
+--dataset TUS-Echo \
+--dataset_path path_to_dataset
 ```
 
 ## Acknowledgements
