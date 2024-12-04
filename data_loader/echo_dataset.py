@@ -145,15 +145,6 @@ class EchoDataset(data.Dataset):
         depth = depth.reshape(1, 128, 128)
         depth = depth.astype(np.float32) # float32
         depth = torch.from_numpy(depth) # numpy => torch
-        
-        if self.opt.mode == "train":
-            if self.opt.enable_cropping:
-                RESOLUTION = self.opt.image_resolution
-                w_offset =  RESOLUTION - 128
-                h_offset = RESOLUTION - 128
-                left = random.randrange(0, w_offset + 1)
-                upper = random.randrange(0, h_offset + 1)
-                depth = depth[:, left:left+128,upper:upper+128]
  
         return {'depth':depth, 'audio':audio_spec_both, 'audio_sub':audio_spec_both_sub}
         # depth  : Depth Maps
