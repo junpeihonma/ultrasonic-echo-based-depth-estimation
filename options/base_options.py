@@ -11,11 +11,11 @@ class BaseOptions():
 	def initialize(self):
 		""" Setting command line arguments """
 		self.parser.add_argument('--dataset', default='TUS-Echo', type=str, help='TUS-Echo')
-		self.parser.add_argument('--dataset_path', default='/TUS-Echo', type=str, help='TUS-Echo')
+		self.parser.add_argument('--dataset_path', default='TUS-Echo', type=str, help='TUS-Echo')
 		self.parser.add_argument('--echo_fre', default='', type=str, help='audible or ultra or null') # Set to null when running multi-task learning.
 		self.parser.add_argument('--test_model_type', default='last', type=str, help='last or best') # Choose whether to use the best model or the model at the end of learning at the time of testing.
 		self.parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
-		self.parser.add_argument('--batchSize', type=int, default=8, help='input batch size')
+		self.parser.add_argument('--batchSize', type=int, default=32, help='input batch size')
 		self.parser.add_argument('--nThreads', default=8, type=int, help='# threads for loading data')
 		self.initialized = True
 
@@ -29,7 +29,7 @@ class BaseOptions():
 		if self.opt.dataset == 'TUS-Echo':
 			self.opt.audio_sampling_rate = 96000 # sampling frequency 
 			self.opt.max_depth = 10000 # Maximum value of depth
-			self.opt.max_spec = 6 # Maximum value of Spectrogram
+			self.opt.max_spec = 10000 # Maximum value of Spectrogram
 			
 		str_ids = self.opt.gpu_ids.split(',')
 		self.opt.gpu_ids = []
@@ -44,8 +44,6 @@ class BaseOptions():
 			if str(k) == "dataset":
 				print('%s: %s' % (str(k), str(v)))
 			if str(k) == "dataset_path":
-				print('%s: %s' % (str(k), str(v)))
-			if str(k) == "echo_fre":
 				print('%s: %s' % (str(k), str(v)))
 			if str(k) == "batchSize":
 				print('%s: %s' % (str(k), str(v)))

@@ -87,7 +87,7 @@ class EchoDataset(data.Dataset):
         if self.opt.dataset == 'TUS-Echo':
             audio_path = self.data_idx[index][0]
             audio_path = audio_path.replace('dataset', 'TUS-Echo')
-            audio, audio_rate = librosa.load(self.opt.dataset_path + "/" + audio_path, sr=self.opt.audio_sampling_rate, mono=False, duration=0.8)
+            audio, audio_rate = librosa.load(audio_path, sr=self.opt.audio_sampling_rate, mono=False, duration=0.8)
                 
             # cropping
             if self.opt.echo_fre == 'audible':
@@ -113,7 +113,7 @@ class EchoDataset(data.Dataset):
                 """ Read auxiliary datas """
                 audio_path_sub = self.data_idx_sub[index][0]
                 audio_path_sub = audio_path_sub.replace('dataset', 'TUS-Echo')
-                audio_sub, audio_rate_sub = librosa.load(self.opt.dataset_path + "/" + audio_path_sub, sr=self.opt.audio_sampling_rate, mono=False, duration=0.8)
+                audio_sub, audio_rate_sub = librosa.load(audio_path_sub, sr=self.opt.audio_sampling_rate, mono=False, duration=0.8)
     
                 # cropping
                 start2 = int(audio_rate_sub*0.07)
@@ -125,7 +125,7 @@ class EchoDataset(data.Dataset):
             """ Read Depth Maps """
             path = self.data_idx[index][1]
             path = path.replace('dataset', 'TUS-Echo')
-            depth = np.load(self.opt.dataset_path + "/" + path)
+            depth = np.load(path)
 
         else:
             print("Error: Specified dataset not found.")

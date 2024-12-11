@@ -20,10 +20,10 @@ def create_optimizer(nets, opt):
 
 def decrease_learning_rate(optimizer, decay_factor=0.94):
 	""" decrease learning rate 6% every opt.learning_rate_decrease_itr epochs """
-    for param_group in optimizer.param_groups:
-        param_group['lr'] *= decay_factor
+	for param_group in optimizer.param_groups:
+		param_group['lr'] *= decay_factor
 
-def evaluate(model, loss_criterion, dataset_val, opt):
+def evaluate(model, loss_criterion, dataset_val):
 	losses = []
 	errors = []
 	with torch.no_grad():
@@ -50,8 +50,8 @@ def evaluate(model, loss_criterion, dataset_val, opt):
 
 def Mixup(x1, x2,alpha=0.5):
 	""" Linear mixing of echoes """
-    mixed_x = alpha * x1 + (1 - alpha) * x2
-    return mixed_x
+	mixed_x = alpha * x1 + (1 - alpha) * x2
+	return mixed_x
 
 if __name__ == '__main__':
 	# loss criterion
@@ -130,8 +130,6 @@ if __name__ == '__main__':
 	best_rmse = float("inf")
 	best_loss = float("inf")
 
-	print("lamda:0.6=>0, mu:0.4=>0")
-
 	for epoch in range(1, opt.niter+1): 
 		torch.cuda.synchronize()
 		batch_loss = []   
@@ -185,7 +183,7 @@ if __name__ == '__main__':
 			if mu < 0:
 				mu = 0
 
-			loss = (1-lamb-mu) * loss_depth + lamb * loss_spec * 3 + mu * loss_mix
+			loss = (1-lamb-mu) * loss_depth + lamb * loss_spec + mu * loss_mix
 			batch_loss.append(loss.item())
 			batch_loss_depth.append(loss_criterion_depth(pre_depth[depth_gt!=0], depth_gt[depth_gt!=0]).item())
 			batch_loss_spec.append(loss_criterion_spec(pre_spec[spec_gt!=0], spec_gt[spec_gt!=0]).item())
@@ -219,7 +217,7 @@ if __name__ == '__main__':
 				model.eval()
 				opt.mode = 'test'
 				print('epoch %d  : ' % (epoch), end="")
-				val_loss, val_err = evaluate(model, loss_criterion_depth, dataset_val, opt)
+				val_loss, val_err = evaluate(model, loss_criterion_depth, dataset_val)
 				model.train()
 				opt.mode = 'train'
 

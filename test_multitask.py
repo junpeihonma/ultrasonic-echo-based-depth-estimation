@@ -49,10 +49,10 @@ if __name__ == '__main__':
     # Load the training model
     if opt.test_model_type == 'best':
         # Evaluated by the model when the training error was the smallest
-        checkpoints_dir = 'trained_models/' + self.opt.dataset + '/multitask/trained_best_model'
+        checkpoints_dir = 'trained_models/' + opt.dataset + '/multitask/trained_best_model'
     else:
         # Evaluated by the model at the end of the learning
-        checkpoints_dir = 'trained_model_epoch_300'
+        checkpoints_dir = 'trained_models/' + opt.dataset + '/multitask/trained_model_epoch_200'
 
     net_audiodepth = builder.build_audio(audio_shape,weights=(checkpoints_dir+ '.pth'))   
     
